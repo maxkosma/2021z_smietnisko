@@ -1,1 +1,1 @@
-# Bazy-danych-zajecia
+# Bazy danych zajecia
