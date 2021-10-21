@@ -1,0 +1,39 @@
+\documentclass[12pt]{article}
+\usepackage[MeX]{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath} %pakiet matematyczny
+\usepackage{amssymb} %pakiet dodatkowych symboli
+\begin{document}
+
+
+$a+b\pm 4$  \\
+$x \leq y$ \\
+$  A  \subset B, C \subseteq D, E \backslash W , W\prime  $ \\\\
+$ \alpha \beta \delta \gamma \phi $ \\
+$ \cos(20) = \cos^2 0 - \sin^2 0 $ \\
+$ \tan(\pi) $ \\
+$ k_{n+1} = n^2 + k_n^{3n+1} - k_{n-2} $\\
+$ f(n) = n^4 +4n^2 - 2|_{n=12}$\\
+$ \frac{n!}{k!(n-k)!} = \binom{n}{k} $\\
+$ \frac{\frac{1}{x}+\frac{1}{y}}{y-z} $
+$ x = a_0 + \frac{1}{a_1+\frac{1}{a_2+\frac{1}{a_3+\frac{1}{a_4}}}}$\\\\
+$ \sqrt{\frac{a}{b}+3} $\\
+$ \sqrt[n]{1+x+x^2+x^3+ \cdots x^2} $\\
+$ \sum_{i=1}^{10}t_i $ \\
+$$ \sum_{i=1}^{10}t_i $$ \\
+$ \sum\limits_{i=1}^{10}t_i $ \\
+\\\\\\\\
+$ a \in \mathbb{R}, \mathcal{W} \subset\mathbf{T}, \mathbb{N} $\\\\
+$ f(x) = x^2\!+\!3x\!+\!2 $ \\
+$ f(x) = x^2\:+\:3x\:+\:2 $\\
+$ f(x) = x^2 \quad +\quad3x \quad +\quad2 $\\
+$ f(x) = x^2\qquad+\qquad3x\qquad+\qquad2 $\\
+
+
+
+
+
+
+
+\end{document}
