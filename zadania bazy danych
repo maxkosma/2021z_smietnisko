@@ -1,0 +1,31 @@
+1.
+zadanie #1
+	CREATE TABLE postac (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, nazwa VARCHAR(50), rodzaj ENUM('wiking','kobieta','ptak'), data_ur DATE, wiek INT);
+zadanie #2
+	INSERT INTO osoba(id, nazwa, rodzaj, data_ur, wiek) VALUES(default, 'Bjorn', 'wiking','1981-01-12', 40);
+	INSERT INTO osoba(id, nazwa, rodzaj, data_ur, wiek) VALUES(default, 'Drozd', 'ptak','2000-07-11', 21);
+	INSERT INTO osoba(id, nazwa, rodzaj, data_ur, wiek) VALUES(default, 'Tesciowa', 'kobieta','2010-07-11', 11);
+zadanie #3
+	UPDATE osoba SET wiek=88 WHERE rodzaj='tesciowa';
+
+2.
+zadanie #1
+	CREATE TABLE walizka (id_walizki int NOT NULL AUTO_INCREMENT PRIMARY KEY, pojemnosc int unsigned DEFAULT NULL, kolor ENUM('rozowy','czerwony','teczowy','zolty'),id_wlasciciela int, foreign key (id_wlasciciela) references osoba(id) on delete cascade);
+zadanie #2
+	ALTER TABLE walizka MODIFY kolor ENUM('rozowy','czerwony','teczowy','zolty') DEFAULT 'zolty';  
+	zadanie #3
+	INSERT INTO walizka(id_walizki, pojemnosc, kolor, id_wlasciciela) VALUES(default, 100, 'teczowy',1);
+	INSERT INTO walizka(id_walizki, pojemnosc, kolor, id_wlasciciela) VALUES(default, 500, 'zolty',3);
+3.
+zadanie #1
+	CREATE TABLE izba (adres_budynku VARCHAR(50) NOT NULL , nazwa_izby VARCHAR(50) NOT NULL, metraz int unsigned, id_wlasciciela int, foreign key (id_wlasciciela) references osoba(id) on delete cascade, primary key(adres_budynku, nazwa_izby));
+zadanie #2
+	ALTER TABLE izba ADD kolor_izby VARCHAR(50) DEFAULT 'czarny' AFTER metraz;
+zadanie #3
+	INSERT INTO izba(adres_budynku,nazwa_izby, metraz, kolor_izby, id_wlasciciela) VALUES ('sloneczna 54', 'spizarnia', 420, default,1);
+4.
+zadanie #1
+	CREATE TABLE przetwory (id_przetworu int NOT NULL AUTO_INCREMENT PRIMARY KEY, rok_produkcji INT(4),id_wykonawcy int, foreign key (id_wykonawcy) references osoba(id) on delete cascade, zawartosc VARCHAR(50), dodatek VARCHAR(50) DEFAULT 'papryczka chili', id_konsumenta int, foreign key (id_konsumenta) references osoba(id) on delete cascade);
+zadanie #2
+	INSERT INTO przetwory(id_przetworu,rok_produkcji, id_wykonawcy,zawartosc,dodatek,id_konsumenta) VALUES (default,1654,1,'bigos',default,3);
+5. 
