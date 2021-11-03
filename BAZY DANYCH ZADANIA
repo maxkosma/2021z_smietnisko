@@ -2,15 +2,15 @@
 zadanie #1
 	CREATE TABLE postac (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, nazwa VARCHAR(50), rodzaj ENUM('wiking','kobieta','ptak'), data_ur DATE, wiek INT);
 zadanie #2
-	INSERT INTO osoba(id, nazwa, rodzaj, data_ur, wiek) VALUES(default, 'Bjorn', 'wiking','1981-01-12', 40);
-	INSERT INTO osoba(id, nazwa, rodzaj, data_ur, wiek) VALUES(default, 'Drozd', 'ptak','2000-07-11', 21);
-	INSERT INTO osoba(id, nazwa, rodzaj, data_ur, wiek) VALUES(default, 'Tesciowa', 'kobieta','2010-07-11', 11);
+	INSERT INTO postac(id, nazwa, rodzaj, data_ur, wiek) VALUES(default, 'Bjorn', 'wiking','1981-01-12', 40);
+	INSERT INTO postac(id, nazwa, rodzaj, data_ur, wiek) VALUES(default, 'Drozd', 'ptak','2000-07-11', 21);
+	INSERT INTO postac(id, nazwa, rodzaj, data_ur, wiek) VALUES(default, 'Tesciowa', 'kobieta','2010-07-11', 11);
 zadanie #3
-	UPDATE osoba SET wiek=88 WHERE rodzaj='tesciowa';
+	UPDATE postac SET wiek=88 WHERE rodzaj='tesciowa';
 
 2.
 zadanie #1
-	CREATE TABLE walizka (id_walizki int NOT NULL AUTO_INCREMENT PRIMARY KEY, pojemnosc int unsigned DEFAULT NULL, kolor ENUM('rozowy','czerwony','teczowy','zolty'),id_wlasciciela int, foreign key (id_wlasciciela) references osoba(id) on delete cascade);
+	CREATE TABLE walizka (id_walizki int NOT NULL AUTO_INCREMENT PRIMARY KEY, pojemnosc int unsigned DEFAULT NULL, kolor ENUM('rozowy','czerwony','teczowy','zolty'),id_wlasciciela int, foreign key (id_wlasciciela) references postac(id) on delete cascade);
 zadanie #2
 	ALTER TABLE walizka MODIFY kolor ENUM('rozowy','czerwony','teczowy','zolty') DEFAULT 'zolty';  
 	zadanie #3
@@ -18,14 +18,44 @@ zadanie #2
 	INSERT INTO walizka(id_walizki, pojemnosc, kolor, id_wlasciciela) VALUES(default, 500, 'zolty',3);
 3.
 zadanie #1
-	CREATE TABLE izba (adres_budynku VARCHAR(50) NOT NULL , nazwa_izby VARCHAR(50) NOT NULL, metraz int unsigned, id_wlasciciela int, foreign key (id_wlasciciela) references osoba(id) on delete cascade, primary key(adres_budynku, nazwa_izby));
+	CREATE TABLE izba (adres_budynku VARCHAR(50) NOT NULL , nazwa_izby VARCHAR(50) NOT NULL, metraz int unsigned, id_wlasciciela int, foreign key (id_wlasciciela) references postac(id) on delete cascade, primary key(adres_budynku, nazwa_izby));
 zadanie #2
 	ALTER TABLE izba ADD kolor_izby VARCHAR(50) DEFAULT 'czarny' AFTER metraz;
 zadanie #3
 	INSERT INTO izba(adres_budynku,nazwa_izby, metraz, kolor_izby, id_wlasciciela) VALUES ('sloneczna 54', 'spizarnia', 420, default,1);
 4.
 zadanie #1
-	CREATE TABLE przetwory (id_przetworu int NOT NULL AUTO_INCREMENT PRIMARY KEY, rok_produkcji INT(4),id_wykonawcy int, foreign key (id_wykonawcy) references osoba(id) on delete cascade, zawartosc VARCHAR(50), dodatek VARCHAR(50) DEFAULT 'papryczka chili', id_konsumenta int, foreign key (id_konsumenta) references osoba(id) on delete cascade);
+	CREATE TABLE przetwory (id_przetworu int NOT NULL AUTO_INCREMENT PRIMARY KEY, rok_produkcji INT(4),id_wykonawcy int, foreign key (id_wykonawcy) references postac(id) on delete cascade, zawartosc VARCHAR(50), dodatek VARCHAR(50) DEFAULT 'papryczka chili', id_konsumenta int, foreign key (id_konsumenta) references postac(id) on delete cascade);
 zadanie #2
 	INSERT INTO przetwory(id_przetworu,rok_produkcji, id_wykonawcy,zawartosc,dodatek,id_konsumenta) VALUES (default,1654,1,'bigos',default,3);
-5. 
+5.
+1. INSERT INTO postac(id, nazwa, rodzaj, data_ur, wiek) VALUES(default, 'John', 'wiking','1951-02-10', 39);
+INSERT INTO postac(id, nazwa, rodzaj, data_ur, wiek) VALUES(default, 'Bob', 'wiking','1991-08-19', 22);
+INSERT INTO postac(id, nazwa, rodzaj, data_ur, wiek) VALUES(default, 'Orest', 'wiking','1971-11-12', 33);
+INSERT INTO postac(id, nazwa, rodzaj, data_ur, wiek) VALUES(default, 'Thor', 'wiking','1999-04-22', 62);
+INSERT INTO postac(id, nazwa, rodzaj, data_ur, wiek) VALUES(default, 'Odyn', 'wiking','1967-03-12', 49);
+
+2. CREATE TABLE statek (nazwa_statku VARCHAR(50) PRIMARY KEY, rodzaj_statku ENUM('zaglowka','motorowka','kuter'), data_wodowania DATE, max_ladownosc int unsigned);
+
+3. INSERT INTO statek(nazwa_statku,rodzaj_statku,data_wodowania,max_ladownosc) VALUES('Eleonora','zaglowka','2000-09-11',2500);
+INSERT INTO statek(nazwa_statku,rodzaj_statku,data_wodowania,max_ladownosc) VALUES('Schlezwig','kuter','2004-05-01',7000);
+
+
+4. ALTER TABLE postac
+ADD funkcja VARCHAR(50) AFTER wiek;
+
+5. UPDATE postac SET funkcja='kapitan' WHERE nazwa='Bjorn';
+
+6. ALTER TABLE postac
+ADD statek VARCHAR(50);
+alter table postac add foreign key (statek) references statek(nazwa_statku) on delete cascade;
+
+7. 
+UPDATE postac SET statek='Eleonora' WHERE nazwa='Bjorn';
+UPDATE postac SET statek='Schlezwig' WHERE nazwa='Drozd';
+8.
+DELETE FROM `izba` WHERE `nazwa_izby` ='spizarnia';
+9.
+DROP table izba;
+
+
