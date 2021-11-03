@@ -1,0 +1,19 @@
+1.
+select * from postac where rodzaj='wiking' order by wiek desc limit 2;
+DELETE FROM 'postac' WHERE id=[7,8];
+
+SET foreign_key_checks = 0;
+ALTER TABLE postac MODIFY id int; 
+ALTER TABLE przetwory DROP Foreign key `przetwory_ibfk_1`;
+ALTER TABLE przetwory DROP Foreign key `przetwory_ibfk_2`;
+ALTER TABLE walizka DROP Foreign key `walizka_ibfk_1`;
+ALTER TABLE postac DROP Primary key;
+2.
+ALTER TABLE postac ADD pesel VARCHAR(11);
+ALTER TABLE postac SET pesel=1234567890+id;
+ALTER TABLE postac ADD PRIMARY KEY(pesel);
+ALTER TABLE postac ALTER COLUMN rodzaj ENUM('wiking','kobieta','ptak','syrena');
+INSERT INTO postac(id, nazwa, rodzaj, data_ur, wiek,funkcja,statek,pesel) VALUES(7, 'Gertruda Nieszczera','syrena','2010-07-11', 11,null,null,34824630985);
+3.
+ UPDATE postac SET statek='Eleonora' WHERE nazwa LIKE '%a%';
+ UPDATE postac SET max_ladownosc=max_ladownosc WHERE data_wodowania between '1901-01-01' and 2000-12-31;
