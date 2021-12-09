@@ -1,4 +1,3 @@
-
 #include "pch.h"
 #include <iostream>
 #include <vector>
@@ -51,13 +50,13 @@ bool czyzawiera(vector<int>tab, vector<int>tab2)
 vector<int>unikalnosc(vector<int>tab)
 {
 	vector<int>unikalny;
-		for (int i = 0; i < tab.size(); i++)
+	for (int i = 0; i < tab.size(); i++)
+	{
+		if (!czynalezy(unikalny, tab[i]))
 		{
-			if (!czynalezy(unikalny, tab[i]))
-			{
-				unikalny.push_back(tab[i]);
-			}
+			unikalny.push_back(tab[i]);
 		}
+	}
 	return unikalny;
 }
 vector<vector<int>>czestosc(vector<int>tab)
@@ -68,14 +67,14 @@ vector<vector<int>>czestosc(vector<int>tab)
 	for (int i = 0; i < u.size(); i++)
 	{
 		int licznik = 0;
-			for (int j = 0; j < tab.size(); j++)
+		for (int j = 0; j < tab.size(); j++)
+		{
+			if (u[i] == tab[j])
 			{
-				if (u[i] == tab[j])
-				{
-					licznik++;
-				}
-				
+				licznik++;
 			}
+
+		}
 		c.push_back(licznik);
 	}
 	wynik.push_back(u);
@@ -124,7 +123,7 @@ map<int, int>czestosc(vector<int>tab)
 	{
 		if (!czynalezyklucz(wynik, tab[i]))
 		{
-			wynik.insert({tab[i],1})
+			wynik.insert({ tab[i],1 })
 		}
 		else
 		{
@@ -134,11 +133,43 @@ map<int, int>czestosc(vector<int>tab)
 	}
 	return wynik;
 }
+bool palindrom(vector<int>tab)
+{
+	for(int i = 0; i < tab.size() / 2; i++)
+	{
+		if (tab[i] != tab[])
+		{
+			return false;
+		}
+	}
+	return true;
+}
+vector<int>podzielnosc(vector<int>tab,int dzielnik)
+{
+	vector<int>vector;
+	for (int i = 0; i < tab.size(); i++)
+	{
+		if (tab[i]%dzielnik==0)
+		{
+			wynik.push_back{tab[i]}
+		}
+	}
+	return wynik;
+}
+vector<int>generuj(int n, int max = 50;int min=0)
+{
+	vector<int>wynik;
+	for (int i = 0; i < n; i++)
+	{
+		wynik.push_back(rand()(max-min)+min)
+	}
+	return wynik;
+}
 int main()
 {
 	int a = 3;
 	wypisz(a);
-	vector<int>tab = { 1,2,3,4,1,2,3,4,1,1,1,4,1,2};
+	vector<int>tab = { 1,2,3,4,1,2,3,4,1,1,1,4,1,2 };
 	vector<int>tab2 = { 3,4,1,4,1,4 };
 	wypisz2(tab);
 	cout << endl;
@@ -146,7 +177,7 @@ int main()
 	cout << endl;
 	wypisz(min(tab));
 	cout << endl;
-	czynalezy(tab, a); 
+	czynalezy(tab, a);
 	cout << endl;
 	czyzawiera(tab, tab2);
 	cout << endl;
