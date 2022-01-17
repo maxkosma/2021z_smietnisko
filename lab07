@@ -1,0 +1,32 @@
+zad 1
+select nazwa from kreatura k left join uczestnicy u on u.id_uczestnika = k.idKreatury  where u.id_uczestnika is null;
+select w.nazwa, sum(e.ilosc) from wyprawa  
+inner join uczestnicy u on w.id_wyprawy=u.id_wyprawy 
+inner join ekwipunek e on u.id_uczestnika=e.idKreatury
+group by w.id_wyprawy;
+zad 2
+select w.nazwa, count(id_uczestnika), group_concat(k.nazwa) from wyprawa w inner join uczestnicy  u on w.id_wyprawy=u.id_wyprawy inner join kreatura k on k.idKreatury=u.id_uczestnika group by w.id_wyprawy;
+select ew.idEtapu, w.nazwa, w.data_rozpoczecia, k.nazwa, ew.kolejnosc  from kreatura k
+inner join wyprawa w on w.kierownik=k.idKreatury
+inner join etapy_wyprawy ew on  ew.idWyprawy=w.id_wyprawy
+inner join sektor s on ew.sektor=s.id_sektora 
+order  by w.data_rozpoczecia, ew.kolejnosc;
+zad 3
+select s.nazwa, ifnull(count(ew.sektor),0) from sektor s
+left join etapy_wyprawy ew on s.id_sektora = ew.sektor group by s.id_sektora;
+select k.idKreatury, if(count(u.id_wyprawy)>0 ,"bral udzial","nie bral") from   uczestnicy u
+left join kreatura k on k.idKreatury=u.id_uczestnika group by id_uczestnika;
+zad 4
+select w.nazwa, sum(length(w.dziennik)) from wyprawa w inner join etapy_wyprawy
+select w.nazwa, count(distinct(u.id_uczestnika)), sum(e.ilosc*z.waga)/count(distinct(u.id_uczestnika)) as "avg waga" from wyprawa  w 
+left join uczestnicy u on w.id_wyprawy=u.id_wyprawy
+left join kreatura k on u.id_uczestnika=k.idKreatury 
+left join ekwipunek e on k.idKreatury=e.idKreatury
+left join zasob z on e.idzasobu=z.idzasobu
+group by nazwa;
+zad 5
+select k.nazwa, datediff(w.data_rozpoczecia, k.dataUr)/365 AS wiek from wyprawa AS w
+join uczestnicy AS u ON w.id_wyprawy = u.id_wyprawy
+join kreatura AS k ON u.id_uczestnika = k.idKreatury
+join etapy_wyprawy AS ew ON w.id_wyprawy=ew.idWyprawy
+where ew.sektor = 7;
