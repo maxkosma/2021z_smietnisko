@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+using namespace std;
+
+void silnia(int x)
+{
+    int o=1;
+    for (int i = 1; i <= x; i++)
+    {
+        o = o*i;
+    }
+    int licznik = 0;
+    int c = o;
+    while(c>0)
+    {
+        c = c/10;
+        licznik++;
+   }
+    cout << licznik;
+}
+void palindrom(int z)
+{
+    int y = 0;
+    int x = z;
+    while (z > 0)
+    {
+        y = y * 10 + z % 10;
+        z = z / 10;
+    }
+    if (x == y)
+        cout << x << " to palindrom" << endl;
+    else
+        cout << x << " to nie palindrom" << endl;
+}
+void potega( int y)
+{
+    int a = 1;
+    int p = 2;
+    for (int i = 1; i <= y; i++)
+    {
+        a = a * p;
+
+        for (int j = 1; j <= i; j++)
+        {
+            int b = a;
+            cout << b * j << " ";
+        }
+        cout <<endl;
+    }
+}
+
+
+int main()
+{
+  //  potega(3);
+  //  palindrom(1222332221);
+    
+    silnia(10);
+    return 0;
+}
